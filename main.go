@@ -9,6 +9,7 @@ import (
 	"strconv"
 
 	"github.com/gorilla/mux"
+	"github.com/lalioniGithub/interface-back/routes"
 )
 
 type Solicitor struct {
@@ -54,7 +55,7 @@ func createSolicitor(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusCreated)
 	json.NewEncoder(w).Encode(newSolicitor)
-	fmt.Fprintf(w, "(%s %s - ID: %d) has been successfully added from solicitors.", newSolicitor.Name, newSolicitor.LastName, newSolicitor.ID)
+	fmt.Fprintf(w, "(%s %s - ID: %d) has been successfully added to solicitors.", newSolicitor.Name, newSolicitor.LastName, newSolicitor.ID)
 }
 
 func getSolicitor(w http.ResponseWriter, r *http.Request) {
@@ -116,12 +117,9 @@ func updateSolicitor(w http.ResponseWriter, r *http.Request) {
 			updatedSolicitor.ID = solicitorId
 			solicitors = append(solicitors, updatedSolicitor)
 			fmt.Fprintf(w, "(%s %s - ID: %d) has been successfully updated.", s.Name, s.LastName, s.ID)
+			break
 		}
 	}
-}
-
-func indexRoute(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprint(w, "Welcome to my REST API")
 }
 
 func main() {
