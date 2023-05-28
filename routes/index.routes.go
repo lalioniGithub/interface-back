@@ -5,6 +5,6 @@ import (
 	"net/http"
 )
 
-func indexRoute(w http.ResponseWriter, r *http.Request) {
+func IndexRoute(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprint(w, "Welcome to my REST API")
 }
