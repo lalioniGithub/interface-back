@@ -4,8 +4,9 @@ import (
 	"log"
 	"net/http"
 
-
 	"github.com/gorilla/mux"
+	"github.com/lalioniGithub/interface-back/db"
+	"github.com/lalioniGithub/interface-back/models"
 	"github.com/lalioniGithub/interface-back/routes"
 )
 
@@ -14,6 +15,11 @@ import (
 
 
 func main() {
+
+	db.DBConnection()
+
+	db.DB.AutoMigrate(models.Solicitor{})
+
 	router := mux.NewRouter().StrictSlash(true)
 
 	router.HandleFunc("/", routes.IndexRoute)
